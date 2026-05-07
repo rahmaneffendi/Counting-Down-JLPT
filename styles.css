@@ -1,0 +1,250 @@
+:root {
+  --ink: #17211f;
+  --paper: #fffaf0;
+  --vermillion: #b93a2d;
+  --moss: #315743;
+  --gold: #d7a852;
+  --mist: rgba(255, 250, 240, 0.78);
+  --line: rgba(23, 33, 31, 0.16);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  min-height: 100%;
+}
+
+body {
+  min-height: 100vh;
+  margin: 0;
+  color: var(--ink);
+  font-family: "Zen Kaku Gothic New", system-ui, sans-serif;
+  background:
+    linear-gradient(90deg, rgba(255, 250, 240, 0.9), rgba(255, 250, 240, 0.2)),
+    url("assets/japanese-background.png") center / cover fixed;
+}
+
+body::before {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  content: "";
+  background:
+    radial-gradient(circle at 19% 18%, rgba(185, 58, 45, 0.16), transparent 18rem),
+    linear-gradient(180deg, rgba(255, 250, 240, 0.16), rgba(23, 33, 31, 0.18));
+}
+
+.page-shell {
+  min-height: calc(100vh - 70px);
+  display: grid;
+  place-items: center;
+  padding: 28px;
+}
+
+.hero {
+  width: min(1120px, 100%);
+  min-height: min(720px, calc(100vh - 126px));
+  display: grid;
+  grid-template-columns: 1fr 280px;
+  align-items: end;
+  gap: 28px;
+  padding: clamp(24px, 5vw, 64px);
+  position: relative;
+  overflow: hidden;
+  border: 1px solid rgba(255, 250, 240, 0.64);
+  background:
+    linear-gradient(115deg, rgba(255, 250, 240, 0.88), rgba(255, 250, 240, 0.42) 52%, rgba(49, 87, 67, 0.2)),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.22), rgba(255, 250, 240, 0.72));
+  box-shadow: 0 30px 80px rgba(23, 33, 31, 0.2);
+  backdrop-filter: blur(10px);
+}
+
+.hero::after {
+  position: absolute;
+  inset: 18px;
+  pointer-events: none;
+  content: "";
+  border: 1px solid rgba(185, 58, 45, 0.22);
+}
+
+.language-ribbon {
+  position: absolute;
+  top: 0;
+  right: clamp(24px, 5vw, 64px);
+  display: flex;
+  gap: 10px;
+  writing-mode: vertical-rl;
+  text-orientation: mixed;
+  font-family: "Noto Serif JP", serif;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+}
+
+.language-ribbon span {
+  min-height: 170px;
+  padding: 18px 9px;
+  color: var(--paper);
+  background: var(--vermillion);
+  box-shadow: 0 12px 24px rgba(185, 58, 45, 0.24);
+}
+
+.hero-content {
+  position: relative;
+  z-index: 1;
+  max-width: 720px;
+}
+
+.eyebrow {
+  width: fit-content;
+  margin: 0 0 18px;
+  padding: 8px 12px;
+  color: var(--paper);
+  font-weight: 700;
+  background: var(--moss);
+}
+
+h1 {
+  margin: 0;
+  font-family: "Noto Serif JP", serif;
+  font-size: clamp(3rem, 8vw, 7.2rem);
+  line-height: 0.98;
+  letter-spacing: 0;
+}
+
+.lead {
+  max-width: 610px;
+  margin: 24px 0 34px;
+  font-size: clamp(1rem, 2vw, 1.24rem);
+  line-height: 1.9;
+}
+
+.countdown {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(104px, 1fr));
+  gap: 12px;
+  max-width: 700px;
+}
+
+.time-block {
+  min-height: 132px;
+  display: grid;
+  place-items: center;
+  padding: 18px 12px;
+  border: 1px solid var(--line);
+  background: rgba(255, 250, 240, 0.76);
+}
+
+.time-block strong {
+  display: block;
+  font-family: "Noto Serif JP", serif;
+  font-size: clamp(2.4rem, 6vw, 4.9rem);
+  line-height: 0.9;
+  color: var(--vermillion);
+}
+
+.time-block span {
+  font-weight: 700;
+  color: var(--moss);
+}
+
+.status-message {
+  min-height: 28px;
+  margin: 18px 0 0;
+  font-weight: 700;
+  color: var(--moss);
+}
+
+.info-panel {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  gap: 12px;
+  align-self: end;
+}
+
+.info-panel div {
+  min-height: 94px;
+  display: grid;
+  align-content: center;
+  padding: 18px;
+  border-left: 4px solid var(--gold);
+  background: var(--mist);
+}
+
+.info-panel span {
+  font-size: 0.86rem;
+  color: rgba(23, 33, 31, 0.66);
+}
+
+.info-panel strong {
+  margin-top: 4px;
+  font-family: "Noto Serif JP", serif;
+  font-size: 1.18rem;
+}
+
+.site-footer {
+  min-height: 70px;
+  display: grid;
+  place-items: center;
+  padding: 18px;
+  background: rgba(23, 33, 31, 0.9);
+}
+
+.site-footer a {
+  color: var(--paper);
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.site-footer a:hover,
+.site-footer a:focus-visible {
+  color: var(--gold);
+}
+
+@media (max-width: 820px) {
+  body {
+    background-attachment: scroll;
+  }
+
+  .page-shell {
+    padding: 14px;
+  }
+
+  .hero {
+    min-height: auto;
+    grid-template-columns: 1fr;
+    padding-top: 104px;
+  }
+
+  .language-ribbon {
+    left: 24px;
+    right: auto;
+    writing-mode: horizontal-tb;
+  }
+
+  .language-ribbon span {
+    min-height: 0;
+    padding: 9px 12px;
+  }
+
+  .countdown {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 460px) {
+  .hero {
+    padding-inline: 18px;
+  }
+
+  .countdown {
+    gap: 8px;
+  }
+
+  .time-block {
+    min-height: 108px;
+    padding: 14px 8px;
+  }
+}
