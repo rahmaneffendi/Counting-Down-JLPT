@@ -110,7 +110,7 @@ body::before {
 h1 {
   margin: 0;
   font-family: "Noto Serif JP", serif;
-  font-size: clamp(3rem, 8vw, 7.2rem);
+  font-size: clamp(2.85rem, 7.4vw, 6.7rem);
   line-height: 0.98;
   letter-spacing: 0;
 }
@@ -259,7 +259,7 @@ h1 {
   }
 
   h1 {
-    font-size: clamp(2.55rem, 13vw, 4.7rem);
+    font-size: clamp(2.45rem, 12vw, 4.45rem);
     line-height: 1.03;
   }
 
