@@ -18,6 +18,7 @@ html {
 
 body {
   min-height: 100vh;
+  min-height: 100svh;
   margin: 0;
   color: var(--ink);
   font-family: "Zen Kaku Gothic New", system-ui, sans-serif;
@@ -38,6 +39,7 @@ body::before {
 
 .page-shell {
   min-height: calc(100vh - 70px);
+  min-height: calc(100svh - 70px);
   display: grid;
   place-items: center;
   padding: 28px;
@@ -206,37 +208,124 @@ h1 {
 @media (max-width: 820px) {
   body {
     background-attachment: scroll;
+    background-position: 58% center;
   }
 
   .page-shell {
-    padding: 14px;
+    min-height: auto;
+    display: block;
+    padding: 12px;
   }
 
   .hero {
+    width: 100%;
     min-height: auto;
     grid-template-columns: 1fr;
-    padding-top: 104px;
+    gap: 22px;
+    padding: 88px 22px 24px;
+    background:
+      linear-gradient(180deg, rgba(255, 250, 240, 0.92), rgba(255, 250, 240, 0.74)),
+      linear-gradient(135deg, rgba(185, 58, 45, 0.12), rgba(49, 87, 67, 0.12));
+    box-shadow: 0 18px 46px rgba(23, 33, 31, 0.18);
+    backdrop-filter: blur(8px);
+  }
+
+  .hero::after {
+    inset: 10px;
   }
 
   .language-ribbon {
-    left: 24px;
+    top: 12px;
+    left: 22px;
     right: auto;
     writing-mode: horizontal-tb;
+    flex-wrap: wrap;
+    max-width: calc(100% - 44px);
+    gap: 8px;
+    font-size: 0.82rem;
+    letter-spacing: 0;
   }
 
   .language-ribbon span {
     min-height: 0;
-    padding: 9px 12px;
+    padding: 8px 10px;
+    box-shadow: 0 8px 18px rgba(185, 58, 45, 0.18);
+  }
+
+  .eyebrow {
+    margin-bottom: 14px;
+    padding: 7px 10px;
+    font-size: 0.9rem;
+  }
+
+  h1 {
+    font-size: clamp(2.55rem, 13vw, 4.7rem);
+    line-height: 1.03;
+  }
+
+  .lead {
+    margin: 18px 0 24px;
+    font-size: 1rem;
+    line-height: 1.75;
   }
 
   .countdown {
     grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 10px;
+    max-width: none;
+  }
+
+  .time-block {
+    min-height: 116px;
+    padding: 16px 10px;
+    background: rgba(255, 250, 240, 0.84);
+  }
+
+  .time-block strong {
+    font-size: clamp(2.45rem, 14vw, 4.2rem);
+  }
+
+  .time-block span {
+    font-size: 0.95rem;
+  }
+
+  .status-message {
+    margin-top: 14px;
+    font-size: 0.98rem;
+    line-height: 1.6;
+  }
+
+  .info-panel {
+    gap: 8px;
+  }
+
+  .info-panel div {
+    min-height: 76px;
+    padding: 14px 16px;
+  }
+
+  .site-footer {
+    min-height: 58px;
+    padding: 14px;
+    text-align: center;
+  }
+
+  .site-footer a {
+    font-size: 0.92rem;
   }
 }
 
 @media (max-width: 460px) {
+  body {
+    background-position: 62% center;
+  }
+
+  .page-shell {
+    padding: 8px;
+  }
+
   .hero {
-    padding-inline: 18px;
+    padding: 82px 16px 18px;
   }
 
   .countdown {
@@ -244,7 +333,39 @@ h1 {
   }
 
   .time-block {
-    min-height: 108px;
-    padding: 14px 8px;
+    min-height: 102px;
+    padding: 12px 8px;
+  }
+
+  .time-block strong {
+    font-size: clamp(2.28rem, 15vw, 3.5rem);
+  }
+
+  .info-panel strong {
+    font-size: 1.06rem;
+  }
+}
+
+@media (max-width: 360px) {
+  .hero {
+    padding-inline: 12px;
+  }
+
+  .language-ribbon {
+    left: 16px;
+    max-width: calc(100% - 32px);
+  }
+
+  .language-ribbon span {
+    font-size: 0.76rem;
+    padding: 7px 8px;
+  }
+
+  .countdown {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .time-block {
+    min-height: 94px;
   }
 }
