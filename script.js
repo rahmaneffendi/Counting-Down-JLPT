@@ -213,6 +213,45 @@ themeBtn.addEventListener("click", () => {
   applyTheme();
 });
 
+// ── Particle repel ────────────────────────────────────────────────────────────
+
+const particles  = document.querySelectorAll('.particle-inner');
+const REPEL_R    = 88;
+const REPEL_F    = 52;
+const mouse      = { x: -9999, y: -9999 };
+let   rafPending = false;
+
+function applyRepel() {
+  rafPending = false;
+  particles.forEach(el => {
+    const r  = el.getBoundingClientRect();
+    const dx = (r.left + r.width  * 0.5) - mouse.x;
+    const dy = (r.top  + r.height * 0.5) - mouse.y;
+    const dist = Math.hypot(dx, dy);
+    if (dist < REPEL_R && dist > 0) {
+      const f = ((REPEL_R - dist) / REPEL_R) * REPEL_F;
+      el.style.transition = 'transform 0.08s linear';
+      el.style.transform  = `translate(${(dx / dist) * f}px,${(dy / dist) * f}px)`;
+    } else if (el.style.transform) {
+      el.style.transition = 'transform 0.7s cubic-bezier(0.34,1.4,0.64,1)';
+      el.style.transform  = '';
+    }
+  });
+}
+
+document.addEventListener('mousemove', e => {
+  mouse.x = e.clientX;
+  mouse.y = e.clientY;
+  if (!rafPending) { rafPending = true; requestAnimationFrame(applyRepel); }
+});
+
+document.addEventListener('mouseleave', () => {
+  particles.forEach(el => {
+    el.style.transition = 'transform 0.7s cubic-bezier(0.34,1.4,0.64,1)';
+    el.style.transform  = '';
+  });
+});
+
 // ── Init ──────────────────────────────────────────────────────────────────────
 
 applyTheme();
