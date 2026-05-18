@@ -286,7 +286,7 @@ h1 {
 }
 
 [data-theme="dark"] .hero {
-  background: linear-gradient(135deg, rgba(30, 30, 30, 0.97), rgba(28, 28, 28, 0.93) 55%, rgba(32, 32, 32, 0.9));
+  background: linear-gradient(135deg, rgba(30, 30, 30, 0.78), rgba(28, 28, 28, 0.72) 55%, rgba(32, 32, 32, 0.68));
   border-color: rgba(255, 255, 255, 0.07);
   box-shadow: 0 30px 80px rgba(0, 0, 0, 0.65);
 }
@@ -351,7 +351,7 @@ h1 {
   }
 
   [data-theme="dark"] .hero {
-    background: linear-gradient(180deg, rgba(30, 30, 30, 0.98), rgba(28, 28, 28, 0.94));
+    background: linear-gradient(180deg, rgba(30, 30, 30, 0.82), rgba(28, 28, 28, 0.74));
   }
 }
 
