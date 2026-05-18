@@ -182,8 +182,40 @@ document.addEventListener("keydown", (e) => {
   if (e.key === "Escape") closePanel();
 });
 
+// ── Dark mode ─────────────────────────────────────────────────────────────────
+
+const themeBtn   = document.getElementById("theme-btn");
+const iconSun    = document.getElementById("icon-sun");
+const iconMoon   = document.getElementById("icon-moon");
+const themeLabel = document.getElementById("theme-label");
+
+let darkMode = document.documentElement.getAttribute("data-theme") === "dark";
+
+function applyTheme() {
+  if (darkMode) {
+    document.documentElement.setAttribute("data-theme", "dark");
+    iconSun.hidden  = false;
+    iconMoon.hidden = true;
+    themeLabel.textContent = "昼";
+    themeBtn.setAttribute("aria-label", "ライトモードに切り替え");
+  } else {
+    document.documentElement.removeAttribute("data-theme");
+    iconSun.hidden  = true;
+    iconMoon.hidden = false;
+    themeLabel.textContent = "夜";
+    themeBtn.setAttribute("aria-label", "ダークモードに切り替え");
+  }
+}
+
+themeBtn.addEventListener("click", () => {
+  darkMode = !darkMode;
+  try { localStorage.setItem("jlpt-theme", darkMode ? "dark" : "light"); } catch {}
+  applyTheme();
+});
+
 // ── Init ──────────────────────────────────────────────────────────────────────
 
+applyTheme();
 updateTzLocal();
 updateCountdown();
 setInterval(updateCountdown, 1000);
