@@ -123,6 +123,7 @@
           <p id="status-message" class="status-message">
             試験日まで、学びの歩みは続いています。
           </p>
+          <p id="tz-local" class="tz-local" hidden></p>
         </div>
 
         <aside class="info-panel" aria-label="試験情報">
@@ -141,6 +142,22 @@
         </aside>
       </section>
     </main>
+
+    <div class="tz-fab-wrap" id="tz-fab-wrap">
+      <div class="tz-panel" id="tz-panel" hidden>
+        <p class="tz-panel-head">⛩ タイムゾーン</p>
+        <ul class="tz-list" id="tz-list" role="listbox" aria-label="タイムゾーン選択"></ul>
+      </div>
+      <button class="tz-fab" id="tz-btn" aria-label="タイムゾーンを変更" aria-expanded="false">
+        <svg viewBox="0 0 20 20" width="20" height="20" fill="currentColor" aria-hidden="true">
+          <rect x="4" y="5" width="2.5" height="15" rx="1"/>
+          <rect x="13.5" y="5" width="2.5" height="15" rx="1"/>
+          <rect x="3" y="9" width="14" height="2.5" rx="1"/>
+          <rect x="0" y="3" width="20" height="3.5" rx="1.5"/>
+        </svg>
+        <span class="tz-fab-label">時間帯</span>
+      </button>
+    </div>
 
     <footer class="site-footer">
       <a href="https://lazwan.com" target="_blank" rel="noopener noreferrer">
