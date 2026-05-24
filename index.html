@@ -198,10 +198,18 @@
     </main>
 
     <div class="tz-fab-wrap" id="tz-fab-wrap">
+      <div class="lang-panel" id="lang-panel" hidden>
+        <p class="lang-panel-head" data-i18n="languagePanelHead">⛩ 言語</p>
+        <ul class="lang-list" id="lang-list" role="listbox" aria-label="言語選択"></ul>
+      </div>
       <div class="tz-panel" id="tz-panel" hidden>
-        <p class="tz-panel-head">⛩ タイムゾーン</p>
+        <p class="tz-panel-head" data-i18n="timezonePanelHead">⛩ タイムゾーン</p>
         <ul class="tz-list" id="tz-list" role="listbox" aria-label="タイムゾーン選択"></ul>
       </div>
+      <button class="lang-btn" id="lang-btn" aria-label="言語を変更" aria-expanded="false">
+        <img src="assets/language-japan.svg" alt="" width="22" height="22" aria-hidden="true" />
+        <span class="lang-label" id="lang-label">日本語</span>
+      </button>
       <button class="theme-btn" id="theme-btn" aria-label="ダークモードに切り替え">
         <svg id="icon-moon" viewBox="0 0 16 16" width="15" height="15" fill="currentColor" aria-hidden="true">
           <path d="M13.5 10.5A6 6 0 1 1 5.5 2.5a4.5 4.5 0 0 0 8 8z"/>
@@ -227,7 +235,7 @@
           <rect x="3" y="9" width="14" height="2.5" rx="1"/>
           <rect x="0" y="3" width="20" height="3.5" rx="1.5"/>
         </svg>
-        <span class="tz-fab-label">時間帯</span>
+        <span class="tz-fab-label" id="tz-fab-label">時間帯</span>
       </button>
     </div>
 

@@ -8,9 +8,166 @@ const elements = {
   seconds: document.getElementById("seconds"),
   status:  document.getElementById("status-message"),
   tzLocal: document.getElementById("tz-local"),
+  ribbon:  document.querySelectorAll(".language-ribbon span"),
+  eyebrow: document.querySelector(".eyebrow"),
+  title:   document.getElementById("page-title"),
+  lead:    document.querySelector(".lead"),
+  units:   document.querySelectorAll(".time-block span"),
+  infoLabels: document.querySelectorAll(".info-panel span"),
+  infoValues: document.querySelectorAll(".info-panel strong"),
 };
 
 const pad = (n, len = 2) => String(n).padStart(len, "0");
+
+// ── Language data ─────────────────────────────────────────────────────────────
+
+const LANGUAGES = [
+  { code: "ja", label: "Japanese", native: "日本語", short: "日本", flag: "🇯🇵" },
+  { code: "en", label: "English", native: "English", short: "EN", flag: "🇬🇧" },
+  { code: "zh", label: "China", native: "中文", short: "中文", flag: "🇨🇳" },
+  { code: "id", label: "Indonesia", native: "Indonesia", short: "ID", flag: "🇮🇩" },
+  { code: "vi", label: "Vietnam", native: "Tiếng Việt", short: "VI", flag: "🇻🇳" },
+];
+
+const COPY = {
+  ja: {
+    htmlLang: "ja",
+    documentTitle: "JLPT 2026 カウントダウン | 日本語能力試験までの日数",
+    ribbon: ["日本語能力試験", "令和八年"],
+    eyebrow: "2026年7月5日・日曜日",
+    title: ["JLPT 2026", "夏の試験まで"],
+    lead: "一日一日を大切に。合格へ向かう静かな集中を、今日から積み重ねましょう。",
+    units: ["日", "時間", "分", "秒"],
+    statusToday: "本日はJLPT試験日です。落ち着いて力を出し切りましょう。",
+    statusDays: (days) => `試験日まであと${days}日。今日の一歩を、合格につなげましょう。`,
+    jstLabel: "日本時間",
+    infoLabels: ["試験日", "曜日", "目標"],
+    infoValues: ["2026年7月5日", "日曜日", "合格をつかむ"],
+    languagePanelHead: "⛩ 言語",
+    timezonePanelHead: "⛩ タイムゾーン",
+    languageAria: "言語を変更",
+    languageListAria: "言語選択",
+    timezoneAria: "タイムゾーンを変更",
+    timezoneListAria: "タイムゾーン選択",
+    timezoneButton: "時間帯",
+    darkAria: "ダークモードに切り替え",
+    lightAria: "ライトモードに切り替え",
+    darkLabel: "夜",
+    lightLabel: "昼",
+  },
+  en: {
+    htmlLang: "en",
+    documentTitle: "JLPT 2026 Countdown | Days Until the Japanese Language Proficiency Test",
+    ribbon: ["Japanese Language Proficiency Test", "Reiwa 8"],
+    eyebrow: "Sunday, July 5, 2026",
+    title: ["JLPT 2026", "Until the Summer Exam"],
+    lead: "Value each day. Build the quiet focus that carries you toward passing, starting today.",
+    units: ["Days", "Hours", "Min", "Sec"],
+    statusToday: "Today is JLPT exam day. Stay calm and give it everything.",
+    statusDays: (days) => `${days} days until the exam. Let today's step move you closer to passing.`,
+    jstLabel: "Japan time",
+    infoLabels: ["Exam date", "Day", "Goal"],
+    infoValues: ["July 5, 2026", "Sunday", "Pass the exam"],
+    languagePanelHead: "⛩ Language",
+    timezonePanelHead: "⛩ Timezone",
+    languageAria: "Change language",
+    languageListAria: "Language selection",
+    timezoneAria: "Change timezone",
+    timezoneListAria: "Timezone selection",
+    timezoneButton: "Time",
+    darkAria: "Switch to dark mode",
+    lightAria: "Switch to light mode",
+    darkLabel: "Night",
+    lightLabel: "Day",
+  },
+  zh: {
+    htmlLang: "zh-CN",
+    documentTitle: "JLPT 2026 倒计时 | 距离日本语能力测试",
+    ribbon: ["日本语能力测试", "令和八年"],
+    eyebrow: "2026年7月5日・星期日",
+    title: ["JLPT 2026", "距离夏季考试"],
+    lead: "珍惜每一天。从今天开始，把通向合格的专注一点点积累起来。",
+    units: ["天", "小时", "分", "秒"],
+    statusToday: "今天是JLPT考试日。保持冷静，发挥全部实力。",
+    statusDays: (days) => `距离考试还有${days}天。让今天的一步更接近合格。`,
+    jstLabel: "日本时间",
+    infoLabels: ["考试日期", "星期", "目标"],
+    infoValues: ["2026年7月5日", "星期日", "通过考试"],
+    languagePanelHead: "⛩ 语言",
+    timezonePanelHead: "⛩ 时区",
+    languageAria: "更改语言",
+    languageListAria: "语言选择",
+    timezoneAria: "更改时区",
+    timezoneListAria: "时区选择",
+    timezoneButton: "时区",
+    darkAria: "切换到深色模式",
+    lightAria: "切换到浅色模式",
+    darkLabel: "夜",
+    lightLabel: "昼",
+  },
+  id: {
+    htmlLang: "id",
+    documentTitle: "Hitung Mundur JLPT 2026 | Sisa Hari Menuju Ujian Bahasa Jepang",
+    ribbon: ["Ujian Kemampuan Bahasa Jepang", "Tahun Reiwa 8"],
+    eyebrow: "Minggu, 5 Juli 2026",
+    title: ["JLPT 2026", "Menuju Ujian Musim Panas"],
+    lead: "Hargai setiap hari. Mulai hari ini, bangun fokus tenang yang membawamu menuju kelulusan.",
+    units: ["Hari", "Jam", "Menit", "Detik"],
+    statusToday: "Hari ini adalah hari ujian JLPT. Tetap tenang dan keluarkan kemampuan terbaikmu.",
+    statusDays: (days) => `${days} hari lagi menuju ujian. Jadikan langkah hari ini makin dekat ke lulus.`,
+    jstLabel: "Waktu Jepang",
+    infoLabels: ["Tanggal ujian", "Hari", "Target"],
+    infoValues: ["5 Juli 2026", "Minggu", "Lulus ujian"],
+    languagePanelHead: "⛩ Bahasa",
+    timezonePanelHead: "⛩ Zona waktu",
+    languageAria: "Ganti bahasa",
+    languageListAria: "Pilihan bahasa",
+    timezoneAria: "Ganti zona waktu",
+    timezoneListAria: "Pilihan zona waktu",
+    timezoneButton: "Waktu",
+    darkAria: "Ganti ke mode gelap",
+    lightAria: "Ganti ke mode terang",
+    darkLabel: "Malam",
+    lightLabel: "Siang",
+  },
+  vi: {
+    htmlLang: "vi",
+    documentTitle: "Đếm Ngược JLPT 2026 | Số Ngày Đến Kỳ Thi Năng Lực Tiếng Nhật",
+    ribbon: ["Kỳ thi năng lực tiếng Nhật", "Năm Reiwa 8"],
+    eyebrow: "Chủ nhật, ngày 5 tháng 7 năm 2026",
+    title: ["JLPT 2026", "Đến Kỳ Thi Mùa Hè"],
+    lead: "Trân trọng từng ngày. Từ hôm nay, hãy tích lũy sự tập trung bình tĩnh để tiến tới đỗ kỳ thi.",
+    units: ["Ngày", "Giờ", "Phút", "Giây"],
+    statusToday: "Hôm nay là ngày thi JLPT. Hãy bình tĩnh và làm hết sức mình.",
+    statusDays: (days) => `Còn ${days} ngày đến kỳ thi. Bước đi hôm nay sẽ đưa bạn gần hơn tới mục tiêu đỗ.`,
+    jstLabel: "Giờ Nhật Bản",
+    infoLabels: ["Ngày thi", "Thứ", "Mục tiêu"],
+    infoValues: ["5 tháng 7, 2026", "Chủ nhật", "Đỗ kỳ thi"],
+    languagePanelHead: "⛩ Ngôn ngữ",
+    timezonePanelHead: "⛩ Múi giờ",
+    languageAria: "Đổi ngôn ngữ",
+    languageListAria: "Chọn ngôn ngữ",
+    timezoneAria: "Đổi múi giờ",
+    timezoneListAria: "Chọn múi giờ",
+    timezoneButton: "Giờ",
+    darkAria: "Chuyển sang chế độ tối",
+    lightAria: "Chuyển sang chế độ sáng",
+    darkLabel: "Tối",
+    lightLabel: "Sáng",
+  },
+};
+
+function getStoredLanguage() {
+  try {
+    const saved = localStorage.getItem("jlpt-lang");
+    return COPY[saved] ? saved : "ja";
+  } catch {
+    return "ja";
+  }
+}
+
+let selectedLang = getStoredLanguage();
+let currentCopy = COPY[selectedLang];
 
 // ── Timezone data ──────────────────────────────────────────────────────────────
 
@@ -89,7 +246,7 @@ function updateCountdown() {
     elements.hours.textContent   = "00";
     elements.minutes.textContent = "00";
     elements.seconds.textContent = "00";
-    elements.status.textContent  = "本日はJLPT試験日です。落ち着いて力を出し切りましょう。";
+    elements.status.textContent  = currentCopy.statusToday;
     return;
   }
 
@@ -103,8 +260,94 @@ function updateCountdown() {
   elements.hours.textContent   = pad(hours);
   elements.minutes.textContent = pad(minutes);
   elements.seconds.textContent = pad(seconds);
-  elements.status.textContent  = `試験日まであと${days}日。今日の一歩を、合格につなげましょう。`;
+  elements.status.textContent  = currentCopy.statusDays(days);
 }
+
+// ── Language UI ──────────────────────────────────────────────────────────────
+
+const langBtn   = document.getElementById("lang-btn");
+const langPanel = document.getElementById("lang-panel");
+const langList  = document.getElementById("lang-list");
+const langLabel = document.getElementById("lang-label");
+
+function setTextList(nodes, values) {
+  nodes.forEach((node, index) => {
+    if (values[index] !== undefined) node.textContent = values[index];
+  });
+}
+
+function applyLanguage() {
+  currentCopy = COPY[selectedLang];
+  document.documentElement.lang = currentCopy.htmlLang;
+  document.title = currentCopy.documentTitle;
+
+  setTextList(elements.ribbon, currentCopy.ribbon);
+  setTextList(elements.units, currentCopy.units);
+  setTextList(elements.infoLabels, currentCopy.infoLabels);
+  setTextList(elements.infoValues, currentCopy.infoValues);
+
+  elements.eyebrow.textContent = currentCopy.eyebrow;
+  elements.title.innerHTML = `${currentCopy.title[0]}<br />${currentCopy.title[1]}`;
+  elements.lead.textContent = currentCopy.lead;
+
+  document.querySelector("[data-i18n='languagePanelHead']").textContent = currentCopy.languagePanelHead;
+  document.querySelector("[data-i18n='timezonePanelHead']").textContent = currentCopy.timezonePanelHead;
+  langBtn.setAttribute("aria-label", currentCopy.languageAria);
+  langList.setAttribute("aria-label", currentCopy.languageListAria);
+  tzBtn.setAttribute("aria-label", currentCopy.timezoneAria);
+  tzList.setAttribute("aria-label", currentCopy.timezoneListAria);
+  document.getElementById("tz-fab-label").textContent = currentCopy.timezoneButton;
+
+  const found = LANGUAGES.find((lang) => lang.code === selectedLang);
+  langLabel.textContent = found?.short ?? "日本";
+
+  applyTheme();
+  updateTzLocal();
+  updateCountdown();
+}
+
+function renderLangList() {
+  langList.innerHTML = "";
+  LANGUAGES.forEach(({ code, label, native, flag }) => {
+    const li = document.createElement("li");
+    li.className = "lang-item";
+    li.setAttribute("role", "option");
+    li.setAttribute("aria-selected", code === selectedLang ? "true" : "false");
+    li.innerHTML =
+      `<span class="lang-item-flag">${flag}</span>` +
+      `<span class="lang-item-label"><strong>${native}</strong> ${label}</span>`;
+    li.addEventListener("click", () => selectLanguage(code));
+    langList.appendChild(li);
+  });
+}
+
+function selectLanguage(code) {
+  selectedLang = COPY[code] ? code : "ja";
+  try { localStorage.setItem("jlpt-lang", selectedLang); } catch {}
+  applyLanguage();
+  closeLangPanel();
+  renderLangList();
+  renderTzList();
+}
+
+function openLangPanel() {
+  renderLangList();
+  closePanel();
+  langPanel.hidden = false;
+  langBtn.setAttribute("aria-expanded", "true");
+  const selected = langList.querySelector("[aria-selected='true']");
+  if (selected) selected.scrollIntoView({ block: "nearest" });
+}
+
+function closeLangPanel() {
+  langPanel.hidden = true;
+  langBtn.setAttribute("aria-expanded", "false");
+}
+
+langBtn.addEventListener("click", (e) => {
+  e.stopPropagation();
+  langPanel.hidden ? openLangPanel() : closeLangPanel();
+});
 
 // ── Timezone UI ────────────────────────────────────────────────────────────────
 
@@ -125,7 +368,7 @@ function updateTzLocal() {
     year: "numeric", month: "long", day: "numeric",
     weekday: "short", hour: "2-digit", minute: "2-digit",
   }).format(new Date(targetTimestamp));
-  elements.tzLocal.textContent = `${found?.flag ?? ""} 日本時間: ${jstTime}`;
+  elements.tzLocal.textContent = `${found?.flag ?? ""} ${currentCopy.jstLabel}: ${jstTime}`;
   elements.tzLocal.hidden = false;
 }
 
@@ -158,6 +401,7 @@ function selectTz(tz) {
 
 function openPanel() {
   renderTzList();
+  closeLangPanel();
   tzPanel.hidden = false;
   tzBtn.setAttribute("aria-expanded", "true");
   const selected = tzList.querySelector("[aria-selected='true']");
@@ -176,10 +420,14 @@ tzBtn.addEventListener("click", (e) => {
 
 document.addEventListener("click", (e) => {
   if (!tzPanel.hidden && !tzWrap.contains(e.target)) closePanel();
+  if (!langPanel.hidden && !tzWrap.contains(e.target)) closeLangPanel();
 });
 
 document.addEventListener("keydown", (e) => {
-  if (e.key === "Escape") closePanel();
+  if (e.key === "Escape") {
+    closePanel();
+    closeLangPanel();
+  }
 });
 
 // ── Dark mode ─────────────────────────────────────────────────────────────────
@@ -196,14 +444,14 @@ function applyTheme() {
     document.documentElement.setAttribute("data-theme", "dark");
     iconSun.hidden  = false;
     iconMoon.hidden = true;
-    themeLabel.textContent = "昼";
-    themeBtn.setAttribute("aria-label", "ライトモードに切り替え");
+    themeLabel.textContent = currentCopy.lightLabel;
+    themeBtn.setAttribute("aria-label", currentCopy.lightAria);
   } else {
     document.documentElement.removeAttribute("data-theme");
     iconSun.hidden  = true;
     iconMoon.hidden = false;
-    themeLabel.textContent = "夜";
-    themeBtn.setAttribute("aria-label", "ダークモードに切り替え");
+    themeLabel.textContent = currentCopy.darkLabel;
+    themeBtn.setAttribute("aria-label", currentCopy.darkAria);
   }
 }
 
@@ -254,7 +502,5 @@ document.addEventListener('mouseleave', () => {
 
 // ── Init ──────────────────────────────────────────────────────────────────────
 
-applyTheme();
-updateTzLocal();
-updateCountdown();
+applyLanguage();
 setInterval(updateCountdown, 1000);
