@@ -1,4 +1,4 @@
-const TARGET_DATE = "2026-07-05";
+const TARGET_DATE = "2026-12-06";
 const targetMoment = new Date(`${TARGET_DATE}T00:00:00+09:00`); // tetap untuk referensi display
 
 const elements = {
@@ -34,15 +34,15 @@ const COPY = {
     htmlLang: "ja",
     documentTitle: "JLPT 2026 カウントダウン | 日本語能力試験までの日数",
     ribbon: ["日本語能力試験", "令和八年"],
-    eyebrow: "2026年7月5日・日曜日",
-    title: ["JLPT 2026", "夏の試験まで"],
+    eyebrow: "2026年12月6日・日曜日",
+    title: ["JLPT 2026", "冬の試験まで"],
     lead: "一日一日を大切に。合格へ向かう静かな集中を、今日から積み重ねましょう。",
     units: ["日", "時間", "分", "秒"],
     statusToday: "本日はJLPT試験日です。落ち着いて力を出し切りましょう。",
     statusDays: (days) => `試験日まであと${days}日。今日の一歩を、合格につなげましょう。`,
     jstLabel: "日本時間",
     infoLabels: ["試験日", "曜日", "目標"],
-    infoValues: ["2026年7月5日", "日曜日", "合格をつかむ"],
+    infoValues: ["2026年12月6日", "日曜日", "合格をつかむ"],
     languagePanelHead: "⛩ 言語",
     timezonePanelHead: "⛩ タイムゾーン",
     languageAria: "言語を変更",
@@ -59,15 +59,15 @@ const COPY = {
     htmlLang: "en",
     documentTitle: "JLPT 2026 Countdown | Days Until the Japanese Language Proficiency Test",
     ribbon: ["Japanese Language Proficiency Test", "Reiwa 8"],
-    eyebrow: "Sunday, July 5, 2026",
-    title: ["JLPT 2026", "Until the Summer Exam"],
+    eyebrow: "Sunday, December 6, 2026",
+    title: ["JLPT 2026", "Until the Winter Exam"],
     lead: "Value each day. Build the quiet focus that carries you toward passing, starting today.",
     units: ["Days", "Hours", "Min", "Sec"],
     statusToday: "Today is JLPT exam day. Stay calm and give it everything.",
     statusDays: (days) => `${days} days until the exam. Let today's step move you closer to passing.`,
     jstLabel: "Japan time",
     infoLabels: ["Exam date", "Day", "Goal"],
-    infoValues: ["July 5, 2026", "Sunday", "Pass the exam"],
+    infoValues: ["December 6, 2026", "Sunday", "Pass the exam"],
     languagePanelHead: "⛩ Language",
     timezonePanelHead: "⛩ Timezone",
     languageAria: "Change language",
@@ -84,15 +84,15 @@ const COPY = {
     htmlLang: "zh-CN",
     documentTitle: "JLPT 2026 倒计时 | 距离日本语能力测试",
     ribbon: ["日本语能力测试", "令和八年"],
-    eyebrow: "2026年7月5日・星期日",
-    title: ["JLPT 2026", "距离夏季考试"],
+    eyebrow: "2026年12月6日・星期日",
+    title: ["JLPT 2026", "距离冬季考试"],
     lead: "珍惜每一天。从今天开始，把通向合格的专注一点点积累起来。",
     units: ["天", "小时", "分", "秒"],
     statusToday: "今天是JLPT考试日。保持冷静，发挥全部实力。",
     statusDays: (days) => `距离考试还有${days}天。让今天的一步更接近合格。`,
     jstLabel: "日本时间",
     infoLabels: ["考试日期", "星期", "目标"],
-    infoValues: ["2026年7月5日", "星期日", "通过考试"],
+    infoValues: ["2026年12月6日", "星期日", "通过考试"],
     languagePanelHead: "⛩ 语言",
     timezonePanelHead: "⛩ 时区",
     languageAria: "更改语言",
@@ -109,15 +109,15 @@ const COPY = {
     htmlLang: "id",
     documentTitle: "Hitung Mundur JLPT 2026 | Sisa Hari Menuju Ujian Bahasa Jepang",
     ribbon: ["Ujian Kemampuan Bahasa Jepang", "Tahun Reiwa 8"],
-    eyebrow: "Minggu, 5 Juli 2026",
-    title: ["JLPT 2026", "Menuju Ujian Musim Panas"],
+    eyebrow: "Minggu, 6 Desember 2026",
+    title: ["JLPT 2026", "Menuju Ujian Musim Dingin"],
     lead: "Hargai setiap hari. Mulai hari ini, bangun fokus tenang yang membawamu menuju kelulusan.",
     units: ["Hari", "Jam", "Menit", "Detik"],
     statusToday: "Hari ini adalah hari ujian JLPT. Tetap tenang dan keluarkan kemampuan terbaikmu.",
     statusDays: (days) => `${days} hari lagi menuju ujian. Jadikan langkah hari ini makin dekat ke lulus.`,
     jstLabel: "Waktu Jepang",
     infoLabels: ["Tanggal ujian", "Hari", "Target"],
-    infoValues: ["5 Juli 2026", "Minggu", "Lulus ujian"],
+    infoValues: ["6 Desember 2026", "Minggu", "Lulus ujian"],
     languagePanelHead: "⛩ Bahasa",
     timezonePanelHead: "⛩ Zona waktu",
     languageAria: "Ganti bahasa",
@@ -134,15 +134,15 @@ const COPY = {
     htmlLang: "vi",
     documentTitle: "Đếm Ngược JLPT 2026 | Số Ngày Đến Kỳ Thi Năng Lực Tiếng Nhật",
     ribbon: ["Kỳ thi năng lực tiếng Nhật", "Năm Reiwa 8"],
-    eyebrow: "Chủ nhật, ngày 5 tháng 7 năm 2026",
-    title: ["JLPT 2026", "Đến Kỳ Thi Mùa Hè"],
+    eyebrow: "Chủ nhật, ngày 6 tháng 12 năm 2026",
+    title: ["JLPT 2026", "Đến Kỳ Thi Mùa Đông"],
     lead: "Trân trọng từng ngày. Từ hôm nay, hãy tích lũy sự tập trung bình tĩnh để tiến tới đỗ kỳ thi.",
     units: ["Ngày", "Giờ", "Phút", "Giây"],
     statusToday: "Hôm nay là ngày thi JLPT. Hãy bình tĩnh và làm hết sức mình.",
     statusDays: (days) => `Còn ${days} ngày đến kỳ thi. Bước đi hôm nay sẽ đưa bạn gần hơn tới mục tiêu đỗ.`,
     jstLabel: "Giờ Nhật Bản",
     infoLabels: ["Ngày thi", "Thứ", "Mục tiêu"],
-    infoValues: ["5 tháng 7, 2026", "Chủ nhật", "Đỗ kỳ thi"],
+    infoValues: ["6 tháng 12, 2026", "Chủ nhật", "Đỗ kỳ thi"],
     languagePanelHead: "⛩ Ngôn ngữ",
     timezonePanelHead: "⛩ Múi giờ",
     languageAria: "Đổi ngôn ngữ",
@@ -195,8 +195,8 @@ const TIMEZONES = [
 
 // ── Target timestamp calculation ───────────────────────────────────────────────
 
-// Returns the UTC timestamp for 2026-07-05 00:00:00 in the given timezone.
-// Probe at noon UTC July 5 to safely calculate the offset without date-wrap issues.
+// Returns the UTC timestamp for 2026-12-06 00:00:00 in the given timezone.
+// Probe at noon UTC December 6 to safely calculate the offset without date-wrap issues.
 function getTargetTimestamp(tz) {
   const probe = new Date(`${TARGET_DATE}T12:00:00Z`);
 
