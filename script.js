@@ -27,6 +27,8 @@ const LANGUAGES = [
   { code: "zh", label: "China", native: "中文", short: "中文", flag: "🇨🇳" },
   { code: "id", label: "Indonesia", native: "Indonesia", short: "ID", flag: "🇮🇩" },
   { code: "vi", label: "Vietnam", native: "Tiếng Việt", short: "VI", flag: "🇻🇳" },
+  { code: "th", label: "Thailand", native: "ไทย", short: "ไทย", flag: "🇹🇭" },
+  { code: "ar", label: "Arabic", native: "العربية", short: "عربي", flag: "🇸🇦" },
 ];
 
 const COPY = {
@@ -155,6 +157,57 @@ const COPY = {
     darkLabel: "Tối",
     lightLabel: "Sáng",
   },
+  th: {
+    htmlLang: "th",
+    documentTitle: "นับถอยหลัง JLPT 2026 | จำนวนวันสู่การสอบวัดระดับภาษาญี่ปุ่น",
+    ribbon: ["การสอบวัดระดับภาษาญี่ปุ่น", "ปีเรวะที่ 8"],
+    eyebrow: "วันอาทิตย์ที่ 6 ธันวาคม 2026",
+    title: ["JLPT 2026", "สู่การสอบฤดูหนาว"],
+    lead: "ให้คุณค่ากับทุกวัน สร้างสมาธิที่สงบนิ่งซึ่งจะพาไปสู่ความสำเร็จ เริ่มตั้งแต่วันนี้",
+    units: ["วัน", "ชั่วโมง", "นาที", "วินาที"],
+    statusToday: "วันนี้คือวันสอบ JLPT ตั้งสติและทำให้เต็มที่",
+    statusDays: (days) => `อีก ${days} วันถึงวันสอบ ก้าวของวันนี้จะพาคุณเข้าใกล้ความสำเร็จมากขึ้น`,
+    jstLabel: "เวลาญี่ปุ่น",
+    infoLabels: ["วันสอบ", "วัน", "เป้าหมาย"],
+    infoValues: ["6 ธันวาคม 2026", "วันอาทิตย์", "สอบผ่าน"],
+    languagePanelHead: "⛩ ภาษา",
+    timezonePanelHead: "⛩ เขตเวลา",
+    languageAria: "เปลี่ยนภาษา",
+    languageListAria: "เลือกภาษา",
+    timezoneAria: "เปลี่ยนเขตเวลา",
+    timezoneListAria: "เลือกเขตเวลา",
+    timezoneButton: "เวลา",
+    darkAria: "สลับเป็นโหมดมืด",
+    lightAria: "สลับเป็นโหมดสว่าง",
+    darkLabel: "กลางคืน",
+    lightLabel: "กลางวัน",
+  },
+  ar: {
+    htmlLang: "ar",
+    htmlDir: "rtl",
+    documentTitle: "العد التنازلي لاختبار JLPT 2026 | الأيام المتبقية لاختبار كفاءة اللغة اليابانية",
+    ribbon: ["اختبار كفاءة اللغة اليابانية", "السنة الثامنة من عصر ريوا"],
+    eyebrow: "الأحد، 6 ديسمبر 2026",
+    title: ["JLPT 2026", "حتى اختبار الشتاء"],
+    lead: "قدّر كل يوم. ابنِ تركيزًا هادئًا يقودك نحو النجاح، ابتداءً من اليوم.",
+    units: ["يوم", "ساعة", "دقيقة", "ثانية"],
+    statusToday: "اليوم هو يوم اختبار JLPT. حافظ على هدوئك وابذل قصارى جهدك.",
+    statusDays: (days) => `باقٍ ${days} يومًا على الاختبار. اجعل خطوة اليوم تقربك من النجاح.`,
+    jstLabel: "توقيت اليابان",
+    infoLabels: ["تاريخ الاختبار", "اليوم", "الهدف"],
+    infoValues: ["6 ديسمبر 2026", "الأحد", "اجتياز الاختبار"],
+    languagePanelHead: "⛩ اللغة",
+    timezonePanelHead: "⛩ المنطقة الزمنية",
+    languageAria: "تغيير اللغة",
+    languageListAria: "اختيار اللغة",
+    timezoneAria: "تغيير المنطقة الزمنية",
+    timezoneListAria: "اختيار المنطقة الزمنية",
+    timezoneButton: "الوقت",
+    darkAria: "التبديل إلى الوضع الداكن",
+    lightAria: "التبديل إلى الوضع الفاتح",
+    darkLabel: "ليل",
+    lightLabel: "نهار",
+  },
 };
 
 function getStoredLanguage() {
@@ -279,6 +332,7 @@ function setTextList(nodes, values) {
 function applyLanguage() {
   currentCopy = COPY[selectedLang];
   document.documentElement.lang = currentCopy.htmlLang;
+  document.documentElement.dir = currentCopy.htmlDir || "ltr";
   document.title = currentCopy.documentTitle;
 
   setTextList(elements.ribbon, currentCopy.ribbon);

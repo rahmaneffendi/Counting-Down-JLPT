@@ -755,6 +755,80 @@ h1 {
   }
 }
 
+/* ── Script-specific fonts ──────────────────────────────────────────────────── */
+
+html[lang="th"] body {
+  font-family: "Noto Sans Thai", system-ui, sans-serif;
+}
+
+html[lang="th"] h1,
+html[lang="th"] .time-block strong,
+html[lang="th"] .info-panel strong,
+html[lang="th"] .language-ribbon {
+  font-family: "Noto Sans Thai", serif;
+}
+
+html[lang="ar"] body {
+  font-family: "Noto Sans Arabic", system-ui, sans-serif;
+}
+
+html[lang="ar"] h1,
+html[lang="ar"] .time-block strong,
+html[lang="ar"] .info-panel strong,
+html[lang="ar"] .language-ribbon {
+  font-family: "Noto Sans Arabic", serif;
+}
+
+/* ── RTL layout (Arabic) ────────────────────────────────────────────────────── */
+
+html[dir="rtl"] .language-ribbon {
+  right: auto;
+  left: clamp(24px, 5vw, 64px);
+}
+
+html[dir="rtl"] .tz-fab-wrap {
+  right: auto;
+  left: 28px;
+  align-items: flex-start;
+}
+
+html[dir="rtl"] .lang-panel,
+html[dir="rtl"] .tz-panel {
+  border-left: none;
+}
+
+html[dir="rtl"] .lang-panel {
+  border-right: 3px solid var(--gold);
+}
+
+html[dir="rtl"] .tz-panel {
+  border-right: 3px solid var(--vermillion);
+}
+
+html[dir="rtl"] .info-panel div {
+  border-left: none;
+  border-right: 4px solid var(--gold);
+}
+
+@media (max-width: 820px) {
+  html[dir="rtl"] .language-ribbon {
+    left: auto;
+    right: 22px;
+  }
+
+  html[dir="rtl"] .tz-fab-wrap {
+    left: auto;
+    right: 16px;
+  }
+}
+
+@media (max-width: 460px) {
+  html[dir="rtl"] .tz-fab-wrap {
+    left: auto;
+    right: 12px;
+  }
+}
+
 @media (max-width: 360px) {
   .hero {
     padding-inline: 12px;
