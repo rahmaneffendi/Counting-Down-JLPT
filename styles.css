@@ -243,7 +243,8 @@ h1 {
 /* ── Floating controls ──────────────────────────────────────────────────────── */
 
 .lang-btn,
-.theme-btn {
+.theme-btn,
+.suggest-btn {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -259,6 +260,17 @@ h1 {
   font-family: "Noto Serif JP", serif;
   box-shadow: 0 4px 14px rgba(49, 87, 67, 0.4);
   transition: background 0.2s, transform 0.15s, box-shadow 0.2s;
+  text-decoration: none;
+}
+
+.suggest-btn {
+  background: var(--gold);
+  color: var(--ink);
+  box-shadow: 0 4px 14px rgba(215, 168, 82, 0.4);
+}
+
+.suggest-btn:hover {
+  background: #e8b848;
 }
 
 .lang-btn {
@@ -274,7 +286,8 @@ h1 {
 }
 
 .lang-btn:hover,
-.theme-btn:hover {
+.theme-btn:hover,
+.suggest-btn:hover {
   transform: scale(1.07);
 }
 
@@ -287,7 +300,8 @@ h1 {
 }
 
 .lang-label,
-.theme-label {
+.theme-label,
+.suggest-label {
   font-size: 0.55rem;
   font-weight: 700;
   letter-spacing: 0.06em;
@@ -406,6 +420,16 @@ h1 {
 }
 
 [data-theme="dark"] .theme-btn:hover {
+  background: #e8b848;
+}
+
+[data-theme="dark"] .suggest-btn {
+  background: #d7a030;
+  color: #0e0900;
+  box-shadow: 0 4px 14px rgba(232, 184, 72, 0.4);
+}
+
+[data-theme="dark"] .suggest-btn:hover {
   background: #e8b848;
 }
 
@@ -710,7 +734,8 @@ h1 {
 
   .tz-fab,
   .lang-btn,
-  .theme-btn {
+  .theme-btn,
+  .suggest-btn {
     width: 48px;
     height: 48px;
   }

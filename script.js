@@ -1,6 +1,8 @@
 const TARGET_DATE = "2026-12-06";
 const targetMoment = new Date(`${TARGET_DATE}T00:00:00+09:00`); // tetap untuk referensi display
 
+const SUGGESTION_EMAIL = "abdulrahmaneffendi789@gmail.com";
+
 const elements = {
   days:    document.getElementById("days"),
   hours:   document.getElementById("hours"),
@@ -56,6 +58,10 @@ const COPY = {
     lightAria: "ライトモードに切り替え",
     darkLabel: "夜",
     lightLabel: "昼",
+    suggestLabel: "意見",
+    suggestAria: "ご意見・ご要望を送る",
+    suggestSubject: "JLPTカウントダウンサイトへのご意見",
+    suggestBody: "サイトへのご意見・ご要望をこちらにご記入ください:\n\n",
   },
   en: {
     htmlLang: "en",
@@ -81,6 +87,10 @@ const COPY = {
     lightAria: "Switch to light mode",
     darkLabel: "Night",
     lightLabel: "Day",
+    suggestLabel: "Suggest",
+    suggestAria: "Send a suggestion or request",
+    suggestSubject: "Suggestion for JLPT Countdown site",
+    suggestBody: "Please write your suggestion or request here:\n\n",
   },
   zh: {
     htmlLang: "zh-CN",
@@ -106,6 +116,10 @@ const COPY = {
     lightAria: "切换到浅色模式",
     darkLabel: "夜",
     lightLabel: "昼",
+    suggestLabel: "建议",
+    suggestAria: "发送建议或请求",
+    suggestSubject: "关于JLPT倒计时网站的建议",
+    suggestBody: "请在此处写下您的建议或请求：\n\n",
   },
   id: {
     htmlLang: "id",
@@ -131,6 +145,10 @@ const COPY = {
     lightAria: "Ganti ke mode terang",
     darkLabel: "Malam",
     lightLabel: "Siang",
+    suggestLabel: "Saran",
+    suggestAria: "Kirim saran atau request",
+    suggestSubject: "Saran untuk situs Hitung Mundur JLPT",
+    suggestBody: "Silakan tulis saran atau request kamu di sini:\n\n",
   },
   vi: {
     htmlLang: "vi",
@@ -156,6 +174,10 @@ const COPY = {
     lightAria: "Chuyển sang chế độ sáng",
     darkLabel: "Tối",
     lightLabel: "Sáng",
+    suggestLabel: "Góp ý",
+    suggestAria: "Gửi góp ý hoặc yêu cầu",
+    suggestSubject: "Góp ý cho trang Đếm Ngược JLPT",
+    suggestBody: "Vui lòng viết góp ý hoặc yêu cầu của bạn ở đây:\n\n",
   },
   th: {
     htmlLang: "th",
@@ -181,6 +203,10 @@ const COPY = {
     lightAria: "สลับเป็นโหมดสว่าง",
     darkLabel: "กลางคืน",
     lightLabel: "กลางวัน",
+    suggestLabel: "แนะนำ",
+    suggestAria: "ส่งข้อเสนอแนะหรือคำขอ",
+    suggestSubject: "ข้อเสนอแนะสำหรับเว็บนับถอยหลัง JLPT",
+    suggestBody: "กรุณาเขียนข้อเสนอแนะหรือคำขอของคุณที่นี่:\n\n",
   },
   ar: {
     htmlLang: "ar",
@@ -207,6 +233,10 @@ const COPY = {
     lightAria: "التبديل إلى الوضع الفاتح",
     darkLabel: "ليل",
     lightLabel: "نهار",
+    suggestLabel: "اقتراح",
+    suggestAria: "إرسال اقتراح أو طلب",
+    suggestSubject: "اقتراح لموقع العد التنازلي لـ JLPT",
+    suggestBody: "يرجى كتابة اقتراحك أو طلبك هنا:\n\n",
   },
 };
 
@@ -322,6 +352,7 @@ const langBtn   = document.getElementById("lang-btn");
 const langPanel = document.getElementById("lang-panel");
 const langList  = document.getElementById("lang-list");
 const langLabel = document.getElementById("lang-label");
+const suggestBtn = document.getElementById("suggest-btn");
 
 function setTextList(nodes, values) {
   nodes.forEach((node, index) => {
@@ -351,6 +382,10 @@ function applyLanguage() {
   tzBtn.setAttribute("aria-label", currentCopy.timezoneAria);
   tzList.setAttribute("aria-label", currentCopy.timezoneListAria);
   document.getElementById("tz-fab-label").textContent = currentCopy.timezoneButton;
+
+  suggestBtn.setAttribute("aria-label", currentCopy.suggestAria);
+  suggestBtn.href = `mailto:${SUGGESTION_EMAIL}?subject=${encodeURIComponent(currentCopy.suggestSubject)}&body=${encodeURIComponent(currentCopy.suggestBody)}`;
+  document.getElementById("suggest-fab-label").textContent = currentCopy.suggestLabel;
 
   const found = LANGUAGES.find((lang) => lang.code === selectedLang);
   langLabel.textContent = found?.short ?? "日本";
